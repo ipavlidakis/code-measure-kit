@@ -3,7 +3,7 @@
 
 import PackageDescription
 
-let version = "0.3.0"
+let version = "0.3.1"
 
 let package = Package(
     name: "CodeMeasureKit",
