@@ -28,8 +28,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_ACTION_TOKEN }}
         with:
-          tag_name: v${{ steps.get_version.outputs.VERSION }}
-          release_name: "v${{ steps.get_version.outputs.VERSION }}"
-          body: "Release for version v${{ steps.get_version.outputs.VERSION }}"
+          tag_name: ${{ steps.get_version.outputs.VERSION }}
+          release_name: "${{ steps.get_version.outputs.VERSION }}"
+          body: "Release for version ${{ steps.get_version.outputs.VERSION }}"
           draft: false
           prerelease: false
