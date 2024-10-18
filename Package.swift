@@ -1,9 +1,9 @@
-// swift-tools-version: 6.0
+// swift-tools-version: 5.9
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
-let version = "0.1.0"
+let version = "0.1.1"
 
 let package = Package(
     name: "CodeMeasureKit",
@@ -16,13 +16,9 @@ let package = Package(
         .visionOS(.v1)
     ],
     products: [
-        .library(
-            name: "CodeMeasureKit",
-            targets: ["CodeMeasureKit"]),
+        .library(name: "CodeMeasureKit", targets: ["CodeMeasureKit"]),
     ],
     targets: [
-        .target(
-            name: "CodeMeasureKit"),
-
+        .target(name: "CodeMeasureKit"),
     ]
 )
