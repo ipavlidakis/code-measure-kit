@@ -16,15 +16,17 @@ Add `Code Measure Kit` to your `Package.swift` dependencies:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/ipavlidakis/code-measure-kit.git", from: "0.1.1")
+    .package(url: "https://github.com/ipavlidakis/code-measure-kit.git", from: "0.1.2")
 ]
 ```
 
 ## Usage
 
-To start measuring the call rate of a function or block of code, you can use the measureCallRate function. Here’s how you can integrate it into your code:
+### Measuring Function Call Rate
 
-### Example: Measuring a Function Call Rate
+To start measuring how often a function is called, you can use the `measureCallRate` function. Here's an example:
+
+#### Example: Measuring a Function Call Rate
 
 ```swift
 import CodeMeasureKit
@@ -35,28 +37,51 @@ func someFunction() {
 }
 ```
 
-In the example above, measureCallRate() will track how often someFunction() is called and automatically log the results every second.
+In the example above, `measureCallRate()` will track how often `someFunction()` is called and automatically log the results every second.
 
-### Example: Measuring a Call Rate with Custom File, Function, and Line Information
+### Measuring Execution Time
+
+You can also measure how long it takes for a block of code (synchronous or asynchronous) to execute using `measureExecutionTime`.
+
+#### Example: Measuring Synchronous Execution Time
 
 ```swift
 import CodeMeasureKit
 
-func anotherFunction() {
-    measureCallRate(fileName: "CustomFile.swift", functionName: "customFunction", line: 42)
-    // Function logic here
+func performSomeTask() {
+    let result = measureExecutionTime {
+        // Code whose execution time is being measured
+        performComputation()
+    }
+    print("Result: \(result)")
 }
 ```
 
-You can manually provide custom file, function, and line information if required. This is useful when you need more control over how call rates are tracked.
+In this example, the execution time of `performComputation()` will be measured, and the result will be printed once it completes. If `isEnabled` is `false`, the execution time will not be logged.
 
-### Enable/Disable Call Rate Measurement
-
-The measurement can be enabled or disabled globally using the isEnabled flag:
+#### Example: Measuring Asynchronous Execution Time
 
 ```swift
-isEnabled = false  // Disables the call rate measurement
-isEnabled = true   // Enables the call rate measurement
+import CodeMeasureKit
+
+func performSomeAsyncTask() async {
+    let result = await measureExecutionTime {
+        // Asynchronous code whose execution time is being measured
+        await performAsyncComputation()
+    }
+    print("Result: \(result)")
+}
+```
+
+In this asynchronous example, the execution time of `performAsyncComputation()` will be measured. The result will be printed once the asynchronous task completes. If `isEnabled` is `false`, the execution time will not be logged.
+
+### Enabling/Disabling Measurement
+
+The measurement can be globally enabled or disabled using the `isEnabled` flag:
+
+```swift
+isEnabled = false  // Disable performance measurement
+isEnabled = true   // Enable performance measurement
 ```
 
 ## License
